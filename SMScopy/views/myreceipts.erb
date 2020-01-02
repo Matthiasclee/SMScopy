@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Receipts</title>
+</head>
+<body>
+<h1>My Receipts</h1>
+<%=
+require "pstore"
+store = PStore.new("#{params['phone']}.pstore")
+counter = 0
+r = []
+while counter != store.transaction {store["items"]}["items"]
+	r << store.transaction {store["item#{counter+1}"]}["thing"]
+	counter = counter + 1
+end
+counter = 0
+price = []
+while counter != store.transaction {store["items"]}["items"]
+	price << store.transaction {store["item#{counter+1}"]}["price"]
+	counter = counter + 1
+end
+counter = 0
+media = []
+while counter != store.transaction {store["items"]}["items"]
+	media << store.transaction {store["item#{counter+1}"]}["media"]
+	counter = counter + 1
+end
+count = 0
+output =  ""
+while count != r.length
+output = output + "<h3>#{r[count]}</h3>
+<p>#{price[count]}</p>
+#{if media[count].to_s != ""
+"<a href = '#{media[count]}'><img src = '#{media[count]}' height = '200' width = '200'><br><p>View bigger</p></a>"
+end}"
+count = count+1
+end
+output
+%>
+<div id="lr"></div>
+</body>
+</html>
